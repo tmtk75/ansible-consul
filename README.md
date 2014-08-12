@@ -1,7 +1,7 @@
-Role Name
+consul
 =========
 
-A brief description of the role goes here.
+A module of ansible for consul.
 
 Requirements
 ------------
@@ -25,12 +25,12 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: tmtk75.consul }
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
