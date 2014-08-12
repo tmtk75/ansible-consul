@@ -1,7 +1,7 @@
 consul
 =========
 
-A module of ansible for consul.
+Ansible role for consul.
 
 Requirements
 ------------

@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Tomotaka Sakuma
-  description: module for consul
+  description: role for consul
   # Some suggested licenses:
   # - BSD (default)
   # - MIT
@@ -105,7 +105,7 @@ galaxy_info:
   #- cloud:ec2
   #- cloud:gce
   #- cloud:rax
-  #- clustering
+  - clustering
   #- database
   #- database:nosql
   #- database:sql
