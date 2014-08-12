@@ -1,0 +1,9 @@
+---
+# default vars for consul
+version: 0.3.0
+sha256sum: da1337ab3b236bad19b791a54a8df03a8c2a340500a392000c21608696957b15
+datacenter: local
+node_name: "{{ ansible_hostname }}"
+bootstrap: false
+server: false
+data_dir: /var/lib/consul
