@@ -27,3 +27,4 @@
   notify:
     - restart consul
 
+- service: name=consul state=started
