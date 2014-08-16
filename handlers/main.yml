@@ -1,4 +1,2 @@
 ---
 # handlers for consul
-- name: restart consul
-  service: name=consul state=restarted

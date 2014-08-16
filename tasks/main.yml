@@ -11,8 +11,6 @@
     sha256sum: "{{ sha256sum }}"
 
 - command: unzip -o /tmp/{{ version }}_linux_amd64.zip chdir=/usr/local/bin
-  notify:
-    - restart consul
 
 - file: path=/usr/local/bin/consul owner=consul group=consul mode=0755 state=file
 
@@ -24,7 +22,5 @@
 - copy: src=./etc/init.d/consul dest=/etc/init.d/consul owner=consul group=consul mode=0755
 
 - template: src=./etc/consul.conf dest=/etc/consul.conf owner=consul group=consul mode=0644
-  notify:
-    - restart consul
 
 - service: name=consul state=started enabled=yes
