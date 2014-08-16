@@ -27,4 +27,4 @@
   notify:
     - restart consul
 
-- service: name=consul state=started
+- service: name=consul state=started enabled=yes
