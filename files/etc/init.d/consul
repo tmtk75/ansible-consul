@@ -56,7 +56,7 @@ start() {
     ## &; action" but you can do "{cmd &}; action".
     daemon \
         --pidfile=$pidfile \
-        --user=consul \
+        --user=$user \
         " { $exec agent -config-file=$conffile -config-dir=$confdir &>> $logfile & } ; echo \$! >| $pidfile "
     
     RETVAL=$?
@@ -79,6 +79,7 @@ stop() {
 
 restart() {
     stop
+    while ps -p `cat $pidfile`; do sleep 1; done
     start
 }
 
