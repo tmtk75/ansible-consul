@@ -32,9 +32,7 @@ MIT
 
 Author Information
 ------------------
-github: https://github.com/tmtk75
-
-twitter: https://twitter.com/tmtk75
-
+github: https://github.com/tmtk75  
+twitter: https://twitter.com/tmtk75  
 blog: http://blog.tmtk.net
 
