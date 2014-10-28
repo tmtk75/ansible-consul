@@ -1,8 +1,8 @@
-playbook: .e/bin/ansible ssh-config hosts tmtk75.consul
-	.e/bin/ansible-playbook -i hosts playbook.yaml
+playbook: .e/bin/ansible ssh-config tmtk75.consul
+	.e/bin/ansible-playbook -i "default," playbook.yaml
 
 ping: .e/bin/ansible ssh-config
-	.e/bin/ansible -m ping -i hosts all
+	.e/bin/ansible -m ping -i "default," all
 
 tmtk75.consul:
 	ln -s .. tmtk75.consul
