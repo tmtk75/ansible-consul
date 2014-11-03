@@ -4,6 +4,6 @@ version: 0.4.1
 sha256sum: 2cf6e59edf348c3094c721eb77436e8c789afa2c35e6e3123a804edfeb1744ac
 datacenter: local
 node_name: "{{ ansible_hostname }}"
-bootstrap: false
+bootstrap_expect: 0
 server: false
 data_dir: /var/lib/consul

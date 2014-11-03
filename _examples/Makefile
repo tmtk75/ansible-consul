@@ -1,5 +1,5 @@
 playbook: .e/bin/ansible ssh-config tmtk75.consul
-	.e/bin/ansible-playbook -i "default," playbook.yaml
+	.e/bin/ansible-playbook -i "default," playbook.yml
 
 ping: .e/bin/ansible ssh-config
 	.e/bin/ansible -m ping -i "default," all
@@ -7,7 +7,7 @@ ping: .e/bin/ansible ssh-config
 tmtk75.consul:
 	ln -s .. tmtk75.consul
 
-ssh-config:
+ssh-config: playbook.yml
 	vagrant ssh-config | tee ssh-config
 
 .e/bin/ansible: .e/bin/pip

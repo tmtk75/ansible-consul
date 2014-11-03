@@ -11,7 +11,7 @@ Role Variables
 --------------
 - datacenter (`local`)
 - node\_name (`{{ ansible_hostname }}`)
-- bootstrap (false) - Equivalent to `-bootstrap` command-line flag
+- bootstrap_expect (0) - Equivalent to `-bootstrap-expect` command-line flag
 - server (false) - Equivalent to `-server` command-line flag
 - data\_dir (`/var/lib/consul`) - Equivalent to `-data-dir` command-line flag
 

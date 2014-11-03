@@ -1,0 +1,4 @@
+- hosts: all
+  sudo: true
+  roles:
+    - { role: tmtk75.consul, server: true, bootstrap_expect: 2, }

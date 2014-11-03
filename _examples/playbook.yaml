@@ -1,4 +1,0 @@
-- hosts: all
-  sudo: true
-  roles:
-    - { role: tmtk75.consul, bootstrap: true, server: true }
