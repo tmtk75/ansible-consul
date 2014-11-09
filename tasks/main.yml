@@ -10,6 +10,10 @@
     mode: 0644
     sha256sum: "{{ sha256sum }}"
 
+#- get_url: url=https://dl.bintray.com/mitchellh/consul/{{ version }}_web_ui.zip
+#  args: ... for WebUI
+#
+
 - command: unzip -o /tmp/{{ version }}_linux_amd64.zip chdir=/usr/local/bin
 
 - file: path=/usr/local/bin/consul owner=consul group=consul mode=0755 state=file

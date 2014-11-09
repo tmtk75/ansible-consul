@@ -7,4 +7,5 @@ node_name: "{{ ansible_hostname }}"
 bootstrap_expect: 0
 server: false
 data_dir: /var/lib/consul
+ui_dir: /opt/consul/ui
 encrypt: O22hydIDZeBkPwqO7cN1UA==
