@@ -1,11 +1,15 @@
 ---
 # tasks for consul
-- user: name=consul
+- name: consul user
+  user: name=consul
 
-- group: name=consul
+- name: consul group
+  group: name=consul
 
-- get_url: url=https://dl.bintray.com/mitchellh/consul/{{ version }}_linux_amd64.zip
+- name: download consul binary
+  get_url: url=https://dl.bintray.com/mitchellh/consul/{{ version }}_linux_amd64.zip
   args:
+    force: true
     dest: /tmp
     mode: 0644
     sha256sum: "{{ sha256sum }}"
@@ -14,17 +18,27 @@
 #  args: ... for WebUI
 #
 
-- command: unzip -o /tmp/{{ version }}_linux_amd64.zip chdir=/usr/local/bin
+- name: unzip
+  yum: name=unzip
 
-- file: path=/usr/local/bin/consul owner=consul group=consul mode=0755 state=file
+#- command: unzip -o /tmp/{{ version }}_linux_amd64.zip chdir=/usr/local/bin
+- name: unarchive
+  unarchive: src=/tmp/{{ version }}_linux_amd64.zip dest=/usr/local/bin copy=no
 
-- file: path={{ item }} owner=consul group=consul mode=0755 state=directory
+- name: make it executable /usr/local/bin/consul
+  file: path=/usr/local/bin/consul owner=consul group=consul mode=0755 state=file
+
+- name: make directories
+  file: path={{ item }} owner=consul group=consul mode=0755 state=directory
   with_items:
     - /etc/consul.d
     - "{{ data_dir }}"
 
-- copy: src=./etc/init.d/consul dest=/etc/init.d/consul owner=consul group=consul mode=0755
+- name: init script
+  copy: src=./etc/init.d/consul dest=/etc/init.d/consul owner=consul group=consul mode=0755
 
-- template: src=./etc/consul.conf dest=/etc/consul.conf owner=consul group=consul mode=0644
+- name: config file /etc/consul.conf
+  template: src=./etc/consul.conf dest=/etc/consul.conf owner=consul group=consul mode=0644
 
-- service: name=consul state=started enabled=yes
+- name: service
+  service: name=consul state=started enabled=yes
