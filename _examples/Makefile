@@ -7,8 +7,9 @@ ping: ansible
 tmtk75.consul:
 	ln -s .. tmtk75.consul
 
-ssh-config: playbook.yml
-	vagrant ssh-config | tee ssh-config
+ssh-config:
+	vagrant ssh-config `vagrant status | sed -r '/running/!d;s/ .*$$//'` \
+	| sed -r 's/Host .*/Host default/' | tee ssh-config
 
 clean:
 	rm -f tmtk75.consul ssh-config

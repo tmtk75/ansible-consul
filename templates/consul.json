@@ -3,11 +3,11 @@
   "node_name": "{{ node_name }}",
   "bootstrap_expect": {{ bootstrap_expect }},
   "server": {{ "true" if server else "false" }}, 
-  "bind_addr": "0.0.0.0",
-  "client_addr": "0.0.0.0",
+  "bind_addr": "{{ bind_addr }}",
+  "client_addr": "{{ client_addr }}",
   "data_dir": "{{ data_dir }}",
   "ui_dir": "{{ ui_dir }}",
-  "rejoin_after_leave": true,
-  "log_level": "INFO",
+  "rejoin_after_leave": {{ "true" if rejoin_after_leave else "false" }},
+  "log_level": "{{ log_level }}",
   "encrypt": "{{ encrypt }}"
 }

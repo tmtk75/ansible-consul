@@ -1,6 +1,12 @@
 # -*- mode: ruby -*-
 Vagrant.configure("2") do |config|
 
-    config.vm.box = "puppetlabs/centos-7.0-64-nocm"
+  config.vm.define "centos7" do |conf|
+    conf.vm.box = "puppetlabs/centos-7.0-64-nocm"
+  end
+
+  config.vm.define "centos6" do |conf|
+    conf.vm.box = "puppetlabs/centos-6.6-64-nocm"
+  end
 
 end

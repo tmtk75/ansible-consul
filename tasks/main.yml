@@ -27,7 +27,7 @@
 
 - name: unarchive
   tags: [consul, consul.unarchive]
-  unarchive: src=/tmp/{{ version }}_linux_amd64.zip dest={{ install_dir }} copy=no
+  unarchive: src={{ tmp_dir }}/{{ version }}_linux_amd64.zip dest={{ install_dir }} copy=no
 
 - name: make it executable
   tags: [consul, consul.chmod]
@@ -37,16 +37,27 @@
   tags: [consul, consul.dirs]
   file: path={{ item }} owner=consul group=consul mode=0755 state=directory
   with_items:
-    - /etc/consul.d
+    - "{{ config_dir }}"
     - "{{ data_dir }}"
 
-- name: init script
+- name: init-script
   tags: [consul, consul.init-script]
-  copy: src=./etc/init.d/consul dest=/etc/init.d/consul owner=consul group=consul mode=0755
+  copy: src=./init-script dest=/etc/init.d/consul owner=consul group=consul mode=0755
+  when: ansible_distribution_major_version in ["6"]
 
-- name: config file /etc/consul.conf
+- name: sysconfig file
   tags: [consul, consul.conf]
-  template: src=./etc/consul.conf dest=/etc/consul.conf owner=consul group=consul mode=0644
+  template: src=./sysconfig dest=/etc/sysconfig/consul owner=consul group=consul mode=0644
+  when: ansible_distribution_major_version in ["6"]
+
+- name: consul.service file
+  tags: [consul, consul.conf]
+  copy: src=./consul.service dest=/etc/systemd/system/consul.service owner=consul group=consul mode=0644
+  when: ansible_distribution_major_version in ["7"]
+
+- name: config file
+  tags: [consul, consul.json]
+  template: src=./consul.json dest={{ config_dir }}/consul.json owner=consul group=consul mode=0644
 
 - name: service
   tags: [consul, consul.service]

@@ -1,4 +1,4 @@
-#!/bin/bash
+#consul !/bin/bash
 #
 # consul        Manage the consul agent
 #       
@@ -25,12 +25,12 @@
 
 prog="consul"
 user="consul"
-exec="/usr/local/bin/$prog"
+exec="/usr/local/sbin/$prog"
 pidfile="/var/run/$prog.pid"
 lockfile="/var/lock/subsys/$prog"
 logfile="/var/log/$prog"
-conffile="/etc/consul.conf"
 confdir="/etc/consul.d"
+conffile="${confdir}/consul.json"
 
 # pull in sysconfig settings
 [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
@@ -57,7 +57,7 @@ start() {
     daemon \
         --pidfile=$pidfile \
         --user=$user \
-        " { $exec agent -config-file=$conffile -config-dir=$confdir &>> $logfile & } ; echo \$! >| $pidfile "
+        " { $exec agent -config-dir=$confdir &>> $logfile & } ; echo \$! >| $pidfile "
     
     RETVAL=$?
     echo
@@ -79,7 +79,9 @@ stop() {
 
 restart() {
     stop
-    while ps -p `cat $pidfile`; do sleep 1; done
+    if [ -e "$pidfile" ]; then
+       while ps -p `cat $pidfile`; do sleep 1; done
+    fi
     start
 }
 

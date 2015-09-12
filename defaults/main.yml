@@ -2,11 +2,24 @@
 # default vars for consul
 version: 0.5.2
 sha256sum: 171cf4074bfca3b1e46112105738985783f19c47f4408377241b868affa9d445
+install_dir: /usr/local/sbin
+config_dir: /etc/consul.d
+tmp_dir: /tmp
+
+# /etc/consul.d/consul.json
 datacenter: local
 node_name: "{{ ansible_hostname }}"
 bootstrap_expect: 3
 server: false
-install_dir: /usr/local/sbin
+bind_addr: "0.0.0.0"
+client_addr: "0.0.0.0"
 data_dir: /var/lib/consul
 ui_dir: /opt/consul/ui
+rejoin_after_leave: true
+log_level: INFO
 encrypt: O22hydIDZeBkPwqO7cN1UA==
+
+# /etc/sysconfig/consul
+gomaxprocs: 2
+options: ""
+
