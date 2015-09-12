@@ -1,12 +1,15 @@
 ---
 # tasks for consul
 - name: consul user
+  tags: [consul, consul.user]
   user: name=consul
 
 - name: consul group
+  tags: [consul, consul.group]
   group: name=consul
 
 - name: download consul binary
+  tags: [consul, consul.download]
   get_url: url=https://dl.bintray.com/mitchellh/consul/{{ version }}_linux_amd64.zip
   args:
     force: true
@@ -19,26 +22,33 @@
 #
 
 - name: unzip
+  tags: [consul, consul.yum]
   yum: name=unzip
 
 #- command: unzip -o /tmp/{{ version }}_linux_amd64.zip chdir=/usr/local/bin
 - name: unarchive
+  tags: [consul, consul.unarchive]
   unarchive: src=/tmp/{{ version }}_linux_amd64.zip dest=/usr/local/bin copy=no
 
 - name: make it executable /usr/local/bin/consul
+  tags: [consul, consul.chmod]
   file: path=/usr/local/bin/consul owner=consul group=consul mode=0755 state=file
 
 - name: make directories
+  tags: [consul, consul.dirs]
   file: path={{ item }} owner=consul group=consul mode=0755 state=directory
   with_items:
     - /etc/consul.d
     - "{{ data_dir }}"
 
 - name: init script
+  tags: [consul, consul.init-script]
   copy: src=./etc/init.d/consul dest=/etc/init.d/consul owner=consul group=consul mode=0755
 
 - name: config file /etc/consul.conf
+  tags: [consul, consul.conf]
   template: src=./etc/consul.conf dest=/etc/consul.conf owner=consul group=consul mode=0644
 
 - name: service
+  tags: [consul, consul.service]
   service: name=consul state=started enabled=yes
