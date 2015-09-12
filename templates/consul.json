@@ -1,7 +1,9 @@
 {
   "datacenter": "{{ datacenter }}",
   "node_name": "{{ node_name }}",
+{% if server %}
   "bootstrap_expect": {{ bootstrap_expect }},
+{% endif %}
   "server": {{ "true" if server else "false" }}, 
   "bind_addr": "{{ bind_addr }}",
   "client_addr": "{{ client_addr }}",
