@@ -48,7 +48,7 @@
 - name: sysconfig file
   tags: [consul, consul.conf]
   template: src=./sysconfig dest=/etc/sysconfig/consul owner=consul group=consul mode=0644
-  when: ansible_distribution_major_version in ["6"]
+  when: ansible_distribution_major_version in ["6", "7"]
 
 - name: consul.service file
   tags: [consul, consul.conf]
