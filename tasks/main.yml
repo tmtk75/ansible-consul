@@ -25,14 +25,13 @@
   tags: [consul, consul.yum]
   yum: name=unzip
 
-#- command: unzip -o /tmp/{{ version }}_linux_amd64.zip chdir=/usr/local/bin
 - name: unarchive
   tags: [consul, consul.unarchive]
-  unarchive: src=/tmp/{{ version }}_linux_amd64.zip dest=/usr/local/bin copy=no
+  unarchive: src=/tmp/{{ version }}_linux_amd64.zip dest={{ install_dir }} copy=no
 
-- name: make it executable /usr/local/bin/consul
+- name: make it executable
   tags: [consul, consul.chmod]
-  file: path=/usr/local/bin/consul owner=consul group=consul mode=0755 state=file
+  file: path={{ install_dir }}/consul owner=consul group=consul mode=0755 state=file
 
 - name: make directories
   tags: [consul, consul.dirs]
