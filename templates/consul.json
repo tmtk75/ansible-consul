@@ -11,5 +11,6 @@
   "ui_dir": "{{ ui_dir }}",
   "rejoin_after_leave": {{ "true" if rejoin_after_leave else "false" }},
   "log_level": "{{ log_level }}",
-  "encrypt": "{{ encrypt }}"
+  "encrypt": "{{ encrypt }}",
+  "disable_remote_exec": {{ "true" if disable_remote_exec else "false" }}
 }

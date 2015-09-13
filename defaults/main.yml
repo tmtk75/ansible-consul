@@ -18,6 +18,7 @@ ui_dir: /opt/consul/ui
 rejoin_after_leave: true
 log_level: INFO
 encrypt: O22hydIDZeBkPwqO7cN1UA==
+disable_remote_exec: true
 
 # /etc/sysconfig/consul
 gomaxprocs: 2
