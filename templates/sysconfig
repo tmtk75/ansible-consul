@@ -1,2 +1,3 @@
+# {{ ansible_managed }}
 GOMAXPROCS={{ gomaxprocs }}
 OPTIONS="{{ options }}"
