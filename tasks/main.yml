@@ -1,64 +1,88 @@
 ---
 # tasks for consul
 - name: consul user
-  tags: [consul, consul.user]
   user: name=consul
+  tags:
+    - consul
+    - consul.user
 
 - name: consul group
-  tags: [consul, consul.group]
   group: name=consul
+  tags:
+    - consul
+    - consul.group
 
 - name: download consul binary
-  tags: [consul, consul.download]
   get_url: url=https://dl.bintray.com/mitchellh/consul/{{ version }}_linux_amd64.zip
   args:
     force: true
     dest: /tmp
     mode: 0644
     sha256sum: "{{ sha256sum }}"
+  tags:
+    - consul
+    - consul.download
 
 #- get_url: url=https://dl.bintray.com/mitchellh/consul/{{ version }}_web_ui.zip
 #  args: ... for WebUI
 #
 
 - name: unzip
-  tags: [consul, consul.yum]
   yum: name=unzip
+  tags:
+    - consul
+    - consul.yum
 
 - name: unarchive
-  tags: [consul, consul.unarchive]
   unarchive: src={{ tmp_dir }}/{{ version }}_linux_amd64.zip dest={{ install_dir }} copy=no
+  tags:
+    - consul
+    - consul.unarchive
 
 - name: make it executable
-  tags: [consul, consul.chmod]
   file: path={{ install_dir }}/consul owner=consul group=consul mode=0755 state=file
+  tags:
+    - consul
+    - consul.chmod
 
 - name: make directories
-  tags: [consul, consul.dirs]
   file: path={{ item }} owner=consul group=consul mode=0755 state=directory
   with_items:
     - "{{ config_dir }}"
     - "{{ data_dir }}"
+  tags:
+    - consul
+    - consul.dirs
 
 - name: init-script
-  tags: [consul, consul.init-script]
   copy: src=./init-script dest=/etc/init.d/consul owner=consul group=consul mode=0755
   when: ansible_distribution_major_version in ["6"]
+  tags:
+    - consul
+    - consul.init-script
 
 - name: sysconfig file
-  tags: [consul, consul.conf]
   template: src=./sysconfig dest=/etc/sysconfig/consul owner=consul group=consul mode=0644
   when: ansible_distribution_major_version in ["6", "7"]
+  tags:
+    - consul
+    - consul.conf
 
 - name: consul.service file
-  tags: [consul, consul.conf]
   copy: src=./consul.service dest=/etc/systemd/system/consul.service owner=consul group=consul mode=0644
   when: ansible_distribution_major_version in ["7"]
+  tags:
+    - consul
+    - consul.conf
 
 - name: config file
-  tags: [consul, consul.json]
   template: src=./consul.json dest={{ config_dir }}/consul.json owner=consul group=consul mode=0644
+  tags:
+    - consul
+    - consul.json
 
 - name: service
-  tags: [consul, consul.service]
   service: name=consul state=started enabled=yes
+  tags:
+    - consul
+    - consul.service
