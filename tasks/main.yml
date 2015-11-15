@@ -83,7 +83,7 @@
 
 - name: init.d/consul-leave
   template: src=./consul-leave dest=/etc/init.d/consul-leave owner=consul group=consul mode=0755
-  when: ansible_distribution_major_version in ["6,", "7"]
+  when: ansible_distribution_major_version in ["6", "7"]
   tags:
     - consul
     - consul.rc.d
@@ -93,7 +93,7 @@
   with_items:
     - "0"  # shutdown
     - "6"  # reboot
-  when: ansible_distribution_major_version in ["6,", "7"]
+  when: ansible_distribution_major_version in ["6", "7"]
   tags:
     - consul
     - consul.rc.d
