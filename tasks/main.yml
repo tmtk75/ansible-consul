@@ -27,7 +27,7 @@
 #  args: ... for WebUI
 #
 
-- name: unzip
+- name: install unzip
   yum: name=unzip
   tags:
     - consul
