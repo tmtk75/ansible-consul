@@ -1,0 +1,4 @@
+---
+- name: validate sha256sum[version]
+  fail: msg="sha256sum for {{ version }} is undefined"
+  when: sha256sum[version] is undefined
