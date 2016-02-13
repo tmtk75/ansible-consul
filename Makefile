@@ -1,7 +1,7 @@
 ping: ssh-config
 	ansible -i hosts.ini -m ping all
 
-playbook:
+playbook: ssh-config
 	ansible-playbook -i hosts.ini playbook.yml
 	#ansible-playbook -i hosts.ini playbook.yml --start-at-task="config file"
 
