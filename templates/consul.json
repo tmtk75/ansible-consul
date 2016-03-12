@@ -15,5 +15,6 @@
   "rejoin_after_leave": {{ "true" if rejoin_after_leave else "false" }},
   "log_level": "{{ log_level }}",
   "encrypt": "{{ encrypt }}",
+  "recursors": ["8.8.8.8", "8.8.4.4"],
   "disable_remote_exec": {{ "true" if disable_remote_exec else "false" }}
 }

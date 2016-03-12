@@ -80,7 +80,7 @@ stop() {
 restart() {
     stop
     if [ -e "$pidfile" ]; then
-       while ps -p `cat $pidfile`; do sleep 1; done
+       while ps -p `cat $pidfile` > /dev/null; do sleep 1; done
     fi
     start
 }

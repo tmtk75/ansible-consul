@@ -79,6 +79,8 @@
 
 - name: config file
   template: src=./consul.json dest={{ config_dir }}/consul.json owner=consul group=consul mode=0644
+  notify:
+    - reload consul
   tags:
     - consul
     - consul.json

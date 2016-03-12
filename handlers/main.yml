@@ -1,2 +1,4 @@
 ---
 # handlers for consul
+- name: reload consul
+  service: name=consul state=reloaded
