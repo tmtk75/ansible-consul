@@ -15,17 +15,17 @@
     - consul.group
 
 - name: download consul binary
-  get_url: url=https://releases.hashicorp.com/consul/{{ version }}/consul_{{ version }}_linux_amd64.zip
+  get_url: url=https://releases.hashicorp.com/consul/{{ consul_version }}/consul_{{ consul_version }}_linux_amd64.zip
   args:
     force: true
     dest: /tmp
     mode: 0644
-    sha256sum: "{{ sha256sum[version] }}"
+    sha256sum: "{{ sha256sum[consul_version] }}"
   tags:
     - consul
     - consul.download
 
-#- get_url: url=https://dl.bintray.com/mitchellh/consul/{{ version }}_web_ui.zip
+#- get_url: url=https://dl.bintray.com/mitchellh/consul/{{ consul_version }}_web_ui.zip
 #  args: ... for WebUI
 #
 
@@ -36,7 +36,7 @@
     - consul.yum
 
 - name: unarchive
-  unarchive: src={{ tmp_dir }}/consul_{{ version }}_linux_amd64.zip dest={{ install_dir }} copy=no
+  unarchive: src={{ tmp_dir }}/consul_{{ consul_version }}_linux_amd64.zip dest={{ install_dir }} copy=no
   tags:
     - consul
     - consul.unarchive
