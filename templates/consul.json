@@ -2,7 +2,7 @@
   "datacenter": "{{ consul_datacenter }}",
   "node_name": "{{ consul_node_name }}",
 {% if server %}
-  "bootstrap_expect": {{ bootstrap_expect }},
+  "bootstrap_expect": {{ consul_bootstrap_expect }},
 {% endif %}
   "server": {{ "true" if server else "false" }}, 
   "bind_addr": "{{ bind_addr }}",

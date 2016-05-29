@@ -12,7 +12,7 @@ tmp_dir: /tmp
 # /etc/consul.d/consul.json
 consul_datacenter: local
 consul_node_name: "{{ ansible_hostname }}"
-bootstrap_expect: 3
+consul_bootstrap_expect: 3
 server: false
 bind_addr: "0.0.0.0"
 client_addr: "0.0.0.0"

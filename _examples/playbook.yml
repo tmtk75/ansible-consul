@@ -1,7 +1,7 @@
 - hosts: all
   sudo: true
   roles:
-    #- { role: tmtk75.consul, server: false, bootstrap_expect: 2 }
+    #- { role: tmtk75.consul, server: false, consul_bootstrap_expect: 2 }
     - { role: consul-template }
   vars:
   - templates:
