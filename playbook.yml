@@ -4,7 +4,7 @@
 
   vars:
     consul_version: "0.6.3"
-    advertise_addr: "127.0.0.1"
+    consul_advertise_addr: "127.0.0.1"
 
   roles:
   - consul

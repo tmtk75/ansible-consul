@@ -10,8 +10,8 @@ config_dir: /etc/consul.d
 tmp_dir: /tmp
 
 # /etc/consul.d/consul.json
-datacenter: local
-node_name: "{{ ansible_hostname }}"
+consul_datacenter: local
+consul_node_name: "{{ ansible_hostname }}"
 bootstrap_expect: 3
 server: false
 bind_addr: "0.0.0.0"
@@ -22,7 +22,7 @@ rejoin_after_leave: true
 log_level: INFO
 encrypt: O22hydIDZeBkPwqO7cN1UA==
 disable_remote_exec: true
-advertise_addr:
+consul_advertise_addr:
 
 # /etc/sysconfig/consul
 gomaxprocs: 2

@@ -1,14 +1,14 @@
 {
-  "datacenter": "{{ datacenter }}",
-  "node_name": "{{ node_name }}",
+  "datacenter": "{{ consul_datacenter }}",
+  "node_name": "{{ consul_node_name }}",
 {% if server %}
   "bootstrap_expect": {{ bootstrap_expect }},
 {% endif %}
   "server": {{ "true" if server else "false" }}, 
   "bind_addr": "{{ bind_addr }}",
   "client_addr": "{{ client_addr }}",
-{% if advertise_addr %}
-  "advertise_addr": "{{ advertise_addr }}",
+{% if consul_advertise_addr %}
+  "advertise_addr": "{{ consul_advertise_addr }}",
 {% endif %}
   "data_dir": "{{ data_dir }}",
   "ui_dir": "{{ ui_dir }}",
