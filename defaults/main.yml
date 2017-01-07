@@ -1,7 +1,8 @@
 ---
 # default vars for consul
-consul_version: 0.6.3
+consul_version: 0.7.2
 sha256sum:
+  "0.7.2": aa97f4e5a552d986b2a36d48fdc3a4a909463e7de5f726f3c5a89b8a1be74a58
   "0.6.3": b0532c61fec4a4f6d130c893fd8954ec007a6ad93effbe283a39224ed237e250
   "0.6.1": dbb3c348fdb7cdfc03e5617956b243c594a399733afee323e69ef664cdadb1ac
   "0.5.2": 171cf4074bfca3b1e46112105738985783f19c47f4408377241b868affa9d445
